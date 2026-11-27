@@ -1,0 +1,16 @@
+# coremltools 9 is tested with torch <= 2.7; newer torch fails to convert the encoder.
+torch==2.7.0
+torchvision==0.22.0
+coremltools>=9.0
+numpy<2.3
+timm
+einops
+opencv-python-headless
+pycocotools
+scipy
+tqdm
+onnx
+onnxsim
+torchprofile
+omegaconf
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git
