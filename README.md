@@ -33,7 +33,7 @@ Use **torch 2.7** for export: coremltools 9 fails to convert the encoder with ne
 |---|---|---|
 | Frozen splits: 2,000 train2017 / 500 val / 1,000 test (val2017, disjoint) | any | done: `splits/splits.json` |
 | Eval script: 1/3/5-click + box IoU by object size | any | done: `team_sam/evaluate.py` |
-| FP32 PyTorch reference on val | any | `results/fp32_torch_val.summary.json` |
+| FP32 PyTorch reference on val | any | done: 1-click **57.9**, 3-click 75.9, 5-click 79.6, box 80.0 mIoU (3,241 instances) |
 | FP16 Core ML export (encoder, decoder, per-stage) | any | done: `export/export_coreml.py` |
 | FP16 Core ML IoU on val (desktop check) | **Mac** | todo |
 | Compute-unit sweep + op placement | **Mac + iPhone** | todo |
@@ -93,6 +93,16 @@ the 59 MB encoder.
    first mask.
 
 Pick the compute-unit setting with the lowest **p95 first_mask** for all later comparisons.
+
+## Results so far
+
+Stock L0, FP32 PyTorch (CPU), val split (500 images, 3,241 instances), mIoU %:
+
+| 1 click | 3 clicks | 5 clicks | box | box small | box medium | box large |
+|---|---|---|---|---|---|---|
+| 57.9 | 75.9 | 79.6 | 80.0 | 76.6 | 81.4 | 83.1 |
+
+Per-instance rows: `results/fp32_torch_val.jsonl`. The full run takes about 25 minutes on 4 CPU cores.
 
 ## Evaluation protocol (frozen)
 
