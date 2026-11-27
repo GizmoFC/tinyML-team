@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+assets/
+data/
+coreml/
+*.mlpackage
+.DS_Store
+xcuserdata/
